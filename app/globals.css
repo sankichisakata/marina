@@ -2,32 +2,94 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* ダークモード時 */
+  @media (prefers-color-scheme: dark) {
+    body {
+      color: theme("colors.defwhite");
+      background-color: theme("colors.defblack");
+    }
+  }
   :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    overscroll-behavior: none;
+    font-size: theme("fontSize.xs");
+    font-weight: theme("fontWeight.medium");
+    font-family: theme("fontFamily.sans");
+    background-color: theme("colors.primary");
+  }
+  h1 {
+    font-size: theme("fontSize.xxxxxl");
+    font-weight: theme("fontWeight.bold");
+  }
+  h2 {
+    font-size: theme("fontSize.xxxxl");
+    font-weight: theme("fontWeight.bold");
+  }
+  h3 {
+    font-size: theme("fontSize.xxxl");
+    font-weight: theme("fontWeight.bold");
+  }
+  h4 {
+    font-size: theme("fontSize.xxl");
+    font-weight: theme("fontWeight.bold");
+  }
+  h5 {
+    font-size: theme("fontSize.xl");
+    font-weight: theme("fontWeight.bold");
+  }
+  h6 {
+    font-size: theme("fontSize.lg");
+    font-weight: theme("fontWeight.bold");
+  }
+  p {
+    font-size: theme("fontSize.sm");
+    font-weight: theme("fontWeight.medium");
+  }
+
+  body {
+    font-size: theme("fontSize.xs");
+    font-weight: theme("fontWeight.medium");
+    font-family: theme("fontFamily.sans");
+    color: theme("colors.body");
+    background-color: theme("colors.defwhite");
+  }
+
+  /* @media (min-width: 698px) {
+    :root {
+      font-size: calc(10px + 2 * ((100vw - 698px) / 255));
+    }
+  } */
+
+  /* screenサイズmd:767pxまで  */
+  @media (min-width: 698px) and (max-width: 767px) {
+    :root {
+      font-size: calc(0.7rem + 2 * ((100vw - 698px) / 69));
+    }
+  }
+
+  /* screenサイズlg:1023pxまで  */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    :root {
+      font-size: calc(0.8rem + 1 * ((100vw - 768px) / 256));
+    }
+  }
+
+  /* screenサイズxl:1279pxまで  */
+  @media (min-width: 1024px) and (max-width: 1279px) {
+    :root {
+      font-size: calc(0.9rem + 1 * ((100vw - 1024px) / 255));
+    }
+  }
+
+  @media (min-width: 1279px) {
+    :root {
+      font-size: calc(1rem + 0.5 * ((100vw - 1279px) / 250));
+    }
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
+/* @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
+} */
