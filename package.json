@@ -1,0 +1,36 @@
+{
+  "name": "apparel-oem-site",
+  "private": true,
+  "version": "0.2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/fetch-notion-posts.mjs && tsc && vite build",
+    "build:no-notion": "tsc && vite build",
+    "fetch-blog": "node scripts/fetch-notion-posts.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.22.3",
+    "react-helmet-async": "^2.0.4",
+    "react-markdown": "^9.0.1",
+    "@emailjs/browser": "^4.3.3",
+    "lucide-react": "^0.378.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.10",
+    "tailwindcss": "^3.4.3",
+    "postcss": "^8.4.38",
+    "autoprefixer": "^10.4.19",
+    "@tailwindcss/typography": "^0.5.13",
+    "@notionhq/client": "^2.2.15",
+    "notion-to-md": "^3.1.1",
+    "dotenv": "^16.4.5"
+  }
+}
