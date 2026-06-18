@@ -42,8 +42,8 @@ export default function Hero() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-8 pt-28 pb-24 w-full">
         <div className="max-w-2xl">
           <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black text-white leading-[1.05] mt-4 mb-8 transition-all duration-700 delay-150 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            あなたの服を、<br />
-            <span className="text-[#FFE500]">カタチにする。</span>
+            あなたの作るを、<br />
+            <span className="text-[#FFE500]">カタチにします</span>
           </h1>
 
           {/* Stats */}
