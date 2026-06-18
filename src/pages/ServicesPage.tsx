@@ -1,22 +1,56 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { ArrowRight, CheckCircle, Package, Paintbrush, Truck } from 'lucide-react'
+import { ArrowRight, CheckCircle, Package, Paintbrush, Truck, X } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import SEO from '../components/SEO'
 
 export default function ServicesPage() {
   const { hash } = useLocation()
+  const [showProcessBtn, setShowProcessBtn] = useState(false)
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     if (!hash) return
     const id = hash.replace('#', '')
     const el = document.getElementById(id)
     if (!el) return
-    const timer = setTimeout(() => {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }, 120)
+    const timer = setTimeout(() => el.scrollIntoView({ behavior: 'smooth' }), 120)
     return () => clearTimeout(timer)
   }, [hash])
+
+  useEffect(() => {
+    const oemEl = document.getElementById('oem')
+    if (!oemEl) return
+    const obs = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setShowProcessBtn(true); obs.disconnect() } },
+      { threshold: 0.1 }
+    )
+    obs.observe(oemEl)
+    return () => obs.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (sessionStorage.getItem('marina_services_modal')) return
+    const tplEl = document.getElementById('3pl')
+    if (!tplEl) return
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+          setShowModal(true)
+          obs.disconnect()
+        }
+      },
+      { threshold: 0 }
+    )
+    obs.observe(tplEl)
+    return () => obs.disconnect()
+  }, [])
+
+  const closeModal = () => {
+    setShowModal(false)
+    sessionStorage.setItem('marina_services_modal', '1')
+  }
+
   return (
     <>
       <SEO
@@ -29,7 +63,7 @@ export default function ServicesPage() {
           { question: 'アパレル3PLで対応できる商品は？', answer: 'アパレル全般のほか、鞄・バッグ・雑貨の保管・出荷にも対応しています。' },
         ]}
       />
-      <div className="page-wrapper">
+      <div className="min-h-screen">
         <ServicesHeader />
         <ServiceNav />
         <OEMSection />
@@ -38,6 +72,52 @@ export default function ServicesPage() {
         <ItemCategories />
         <ServicesCTA />
       </div>
+
+      {/* ご依頼の流れ フローティングボタン */}
+      <Link
+        to="/process"
+        className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 bg-[#0B1D30] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0CBBD8] transition-all duration-500 ${
+          showProcessBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+      >
+        <ArrowRight size={13} />
+        ご依頼の流れ
+      </Link>
+
+      {/* 問い合わせモーダル */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
+          <div className="absolute inset-0 bg-black/50" onClick={closeModal} />
+          <div className="relative bg-white w-full max-w-sm mx-4 mb-4 sm:mb-0 p-7 shadow-2xl">
+            <button
+              onClick={closeModal}
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors"
+              aria-label="閉じる"
+            >
+              <X size={20} />
+            </button>
+            <p className="text-[11px] font-black tracking-widest text-[#0CBBD8] uppercase mb-3">無料相談</p>
+            <h3 className="text-xl font-black text-[#0B1D30] mb-2">サービスが気になりましたか？</h3>
+            <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+              ご不明な点やお見積もりのご依頼など、<br />
+              お気軽にお問い合わせください。
+            </p>
+            <Link
+              to="/contact"
+              onClick={closeModal}
+              className="btn-water w-full text-center block mb-3"
+            >
+              お問い合わせはこちら <ArrowRight size={14} className="inline" />
+            </Link>
+            <button
+              onClick={closeModal}
+              className="block text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-2 w-full"
+            >
+              後で見る
+            </button>
+          </div>
+        </div>
+      )}
     </>
   )
 }
