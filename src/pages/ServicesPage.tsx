@@ -192,8 +192,13 @@ function OEMSection() {
   const ref = useReveal()
   const netRef = useReveal()
   return (
-    <section id="oem" className="py-12 sm:py-20 bg-white scroll-mt-28">
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+    <section id="oem" className="relative py-12 sm:py-20 bg-white scroll-mt-28 overflow-hidden">
+      <img
+        src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=1400&q=80"
+        alt="" aria-hidden
+        className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+      />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
         <div ref={ref} className="reveal mb-8 sm:mb-12">
           <div className="flex items-center gap-3 mb-4">
             <span className="p-2 bg-[#0CBBD8] text-white"><Package size={20} /></span>
@@ -287,7 +292,7 @@ function OEMSection() {
         </div>
 
         {/* Production Network — OEM内に統合 */}
-        <div ref={netRef} className="reveal mt-12 sm:mt-16 pt-10 border-t border-gray-100">
+        <div ref={netRef} className="reveal mt-6 sm:mt-8 pt-6 border-t border-gray-100">
           <p className="eyebrow">Production Network</p>
           <h3 className="text-xl sm:text-2xl font-black mb-2">4ヶ国の生産ネットワーク</h3>
           <p className="text-sm text-gray-500 mb-6 max-w-xl leading-relaxed">
