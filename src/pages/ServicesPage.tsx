@@ -306,10 +306,41 @@ function ODMStep({ num, title, body, delay, isLast }: typeof odmSteps[0] & { del
    3PL
 ════════════════════════════════ */
 const tplFeatures = [
-  { emoji: '⚡', title: '迅速な対応', body: '入荷〜出荷まで最速対応。急な注文増にも柔軟に対処します。' },
-  { emoji: '👕', title: 'アパレル全般', body: 'Tシャツ・ニット・アウター・インナー、幅広いアパレル製品に対応。' },
-  { emoji: '👜', title: '鞄・バッグ', body: 'トートバッグ、リュック、エコバッグなど各種バッグ類にも対応可能。' },
-  { emoji: '🧸', title: '雑貨・グッズ', body: 'アパレル以外の雑貨、ノベルティグッズの保管・出荷も承ります。' },
+  { emoji: '🛍️', title: 'EC物流', body: 'ECショップの受注に合わせた梱包・検品を対応。複数モールの出荷も一括サポートします。' },
+  { emoji: '📊', title: '入出庫・在庫管理', body: '入荷から出庫まで一元管理。リアルタイムな在庫把握でEC運営の手間を削減します。' },
+  { emoji: '🏪', title: '小売店向け発送', body: '小売店様の在庫管理から各店舗への発送まで対応。一括・分散どちらにも柔軟に対応します。' },
+  { emoji: '🔍', title: 'スポット検品', body: '洋服から小物まで、単発・スポットの検品にも対応。数量・期間問わずご相談ください。' },
+]
+
+const tplServiceDetails = [
+  {
+    icon: '🛍️',
+    category: 'EC物流',
+    title: 'ECショップの梱包・検品',
+    desc: '受注ごとの梱包・検品を代行します。商品状態の確認から丁寧な梱包まで、顧客満足度につながる品質でお届けします。',
+    tags: ['受注梱包', '検品', '複数モール対応', '出荷代行'],
+  },
+  {
+    icon: '📊',
+    category: '入出庫・在庫管理',
+    title: '入出庫管理',
+    desc: '入荷から出庫まで正確に管理。在庫数のリアルタイム把握・定期レポートにも対応しています。',
+    tags: ['入荷管理', '出庫管理', '在庫レポート', 'リアルタイム把握'],
+  },
+  {
+    icon: '🏪',
+    category: '小売店向け',
+    title: '小売店様の在庫管理・各店発送',
+    desc: '複数店舗を持つ小売店様向けに、在庫の一元管理と各店舗への個別発送に対応。店舗ごとの数量調整も柔軟に行います。',
+    tags: ['店舗別配送', '在庫一元管理', '分散納品', '一括発送'],
+  },
+  {
+    icon: '🔍',
+    category: 'スポット検品',
+    title: 'スポットでの検品（洋服・小物）',
+    desc: '継続的な契約でなくても対応可能。洋服・バッグ・アクセサリーなど幅広いアイテムのスポット検品を承ります。',
+    tags: ['単発OK', '洋服', 'バッグ・小物', '数量相談可'],
+  },
 ]
 const tplFlow = [
   { label: '入荷・検品', icon: '📥' },
@@ -336,8 +367,8 @@ function TPLSection() {
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white mb-3">物流は、任せてください。</h2>
           <p className="text-sm sm:text-base text-white/60 max-w-2xl leading-relaxed">
-            製造だけでなく、物流もマリナに任せられます。アパレルから鞄・雑貨まで、
-            入荷・保管・ピッキング・出荷を迅速に対応。EC運営の手間を大幅に削減できます。
+            ECショップの梱包・検品から、小売店様の在庫管理・各店発送、スポットの検品まで幅広く対応。
+            入出庫管理もすべてお任せいただけます。
           </p>
         </div>
 
@@ -357,7 +388,7 @@ function TPLSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-8 sm:mb-10">
+        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-10 sm:mb-14">
           {tplFeatures.map((f, i) => (
             <div key={f.title} className="reveal border border-white/10 p-4 sm:p-5 hover:bg-white/5 transition-colors"
               style={{ transitionDelay: `${i * 80}ms` }}>
@@ -366,6 +397,47 @@ function TPLSection() {
               <p className="text-xs text-white/50 leading-relaxed hidden sm:block">{f.body}</p>
             </div>
           ))}
+        </div>
+
+        {/* サービス詳細 */}
+        <div className="mb-10 sm:mb-14">
+          <p className="text-xs font-black text-[#0CBBD8] tracking-widest mb-5 sm:mb-6">SERVICE DETAILS</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {tplServiceDetails.map((s, i) => (
+              <div key={s.category} className="reveal border border-white/10 p-5 sm:p-6 hover:bg-white/5 transition-colors"
+                style={{ transitionDelay: `${i * 80}ms` }}>
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xl">{s.icon}</span>
+                  <span className="text-[10px] font-black bg-[#0CBBD8]/20 text-[#0CBBD8] px-2 py-0.5">{s.category}</span>
+                </div>
+                <h3 className="font-black text-sm sm:text-base mb-2">{s.title}</h3>
+                <p className="text-xs text-white/50 leading-relaxed mb-3">{s.desc}</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {s.tags.map(tag => (
+                    <span key={tag} className="text-[10px] border border-white/20 text-white/60 px-2 py-0.5">{tag}</span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* 急なご依頼アピール */}
+        <div className="reveal mb-8 sm:mb-10 bg-[#FFE500] p-5 sm:p-8">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-3 shrink-0">
+              <span className="text-3xl">⚡</span>
+              <p className="font-black text-[#0B1D30] text-lg sm:text-xl leading-tight">
+                急なご依頼も、<br className="sm:hidden" />お任せください。
+              </p>
+            </div>
+            <div className="w-px bg-[#0B1D30]/20 hidden sm:block self-stretch" />
+            <p className="text-sm text-[#0B1D30]/70 leading-relaxed">
+              「明日から対応してほしい」「突然ロットが増えた」「一時的に検品を頼みたい」——
+              そんな急なご相談にも柔軟に対応いたします。
+              まずはお気軽にご連絡ください。できる限り最速でお見積もり・対応いたします。
+            </p>
+          </div>
         </div>
 
         <div className="text-center">
