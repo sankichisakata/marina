@@ -545,9 +545,6 @@ function TPLSection() {
           </div>
         </div>
 
-        <div className="text-center">
-          <Link to="/contact" className="btn-yellow">物流代行について相談する <ArrowRight size={16} /></Link>
-        </div>
       </div>
     </section>
   )
