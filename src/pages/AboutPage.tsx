@@ -202,9 +202,9 @@ function Values() {
 const info = [
   { label: '会社名', value: '株式会社マリナ' },
   { label: '設立', value: '1972年（昭和47年）' },
-  { label: '代表取締役', value: '（代表者名）' },
+  { label: '代表取締役', value: '石塚 卓之介' },
   { label: '資本金', value: '3,000万円' },
-  { label: '所在地', value: '（本社住所）' },
+  { label: '所在地', value: '〒130-0012 東京都墨田区太平1-2-2' },
   { label: '事業内容', value: 'アパレルOEM・ODM製造（ベーシックウェア・デザイン服・機能服）、企画・素材提案' },
   { label: '生産拠点', value: 'バングラデシュ・ミャンマー・中国・日本' },
 ]

@@ -43,15 +43,8 @@ export default function Hero() {
         <div className="max-w-2xl">
           <h1 className={`text-4xl sm:text-5xl md:text-6xl lg:text-[76px] font-black text-white leading-[1.05] mt-4 mb-8 transition-all duration-700 delay-150 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             あなたの服を、<br />
-            <span className="text-[#FFE500]">かたちにする。</span>
+            <span className="text-[#FFE500]">カタチにする。</span>
           </h1>
-
-          {/* Video label */}
-          <div className={`mt-8 flex items-center gap-3 transition-all duration-700 delay-300 ${visible ? 'opacity-100' : 'opacity-0'}`}>
-            <span className="text-xs text-white/35 tracking-wide">
-              ラフ図 → パターン → 裁断 → 縫製 → 完成品
-            </span>
-          </div>
 
           {/* Stats */}
           <div className={`grid grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-14 pt-8 sm:pt-10 border-t border-white/10 transition-all duration-700 delay-500 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
