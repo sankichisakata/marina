@@ -62,10 +62,7 @@ export default function Footer() {
 
         <div className="pt-7 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/30">
           <p>© 2026 株式会社マリナ. All rights reserved.</p>
-          <div className="flex gap-5">
-            <a href="#" className="hover:text-white/60 transition-colors">プライバシーポリシー</a>
-            <a href="#" className="hover:text-white/60 transition-colors">特定商取引法</a>
-          </div>
+          <Link to="/privacy" className="hover:text-white/60 transition-colors">プライバシーポリシー</Link>
         </div>
       </div>
     </footer>

@@ -8,6 +8,7 @@ import ServicesPage from './pages/ServicesPage'
 import AboutPage from './pages/AboutPage'
 import ProcessPage from './pages/ProcessPage'
 import ContactPage from './pages/ContactPage'
+import PrivacyPage from './pages/PrivacyPage'
 import BlogPage from './components/blog/BlogPage'
 import BlogPostPage from './components/blog/BlogPostPage'
 
@@ -52,6 +53,7 @@ export default function App() {
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
       </Routes>
       <Footer />
       <BackToTopButton />
