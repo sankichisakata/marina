@@ -1,9 +1,22 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, CheckCircle, Package, Paintbrush, Truck } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import SEO from '../components/SEO'
 
 export default function ServicesPage() {
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    if (!hash) return
+    const id = hash.replace('#', '')
+    const el = document.getElementById(id)
+    if (!el) return
+    const timer = setTimeout(() => {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }, 120)
+    return () => clearTimeout(timer)
+  }, [hash])
   return (
     <>
       <SEO
@@ -350,8 +363,29 @@ const tplFlow = [
   { label: '出荷', icon: '🚚' },
 ]
 
+function ServiceDetailCard({ s, delay }: { s: typeof tplServiceDetails[0]; delay: number }) {
+  const ref = useReveal()
+  return (
+    <div ref={ref} className="reveal border border-white/10 p-5 sm:p-6 hover:bg-white/5 transition-colors"
+      style={{ transitionDelay: `${delay}ms` }}>
+      <div className="flex items-center gap-2 mb-3">
+        <span className="text-xl">{s.icon}</span>
+        <span className="text-[10px] font-black bg-[#0CBBD8]/20 text-[#0CBBD8] px-2 py-0.5">{s.category}</span>
+      </div>
+      <h3 className="font-black text-sm sm:text-base mb-2">{s.title}</h3>
+      <p className="text-xs text-white/50 leading-relaxed mb-3">{s.desc}</p>
+      <div className="flex flex-wrap gap-1.5">
+        {s.tags.map(tag => (
+          <span key={tag} className="text-[10px] border border-white/20 text-white/60 px-2 py-0.5">{tag}</span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 function TPLSection() {
   const ref = useReveal()
+  const urgencyRef = useReveal()
   return (
     <section id="3pl" className="relative py-12 sm:py-20 bg-[#0B1D30] text-white scroll-mt-28 overflow-hidden">
       <img
@@ -404,26 +438,13 @@ function TPLSection() {
           <p className="text-xs font-black text-[#0CBBD8] tracking-widest mb-5 sm:mb-6">SERVICE DETAILS</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {tplServiceDetails.map((s, i) => (
-              <div key={s.category} className="reveal border border-white/10 p-5 sm:p-6 hover:bg-white/5 transition-colors"
-                style={{ transitionDelay: `${i * 80}ms` }}>
-                <div className="flex items-center gap-2 mb-3">
-                  <span className="text-xl">{s.icon}</span>
-                  <span className="text-[10px] font-black bg-[#0CBBD8]/20 text-[#0CBBD8] px-2 py-0.5">{s.category}</span>
-                </div>
-                <h3 className="font-black text-sm sm:text-base mb-2">{s.title}</h3>
-                <p className="text-xs text-white/50 leading-relaxed mb-3">{s.desc}</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {s.tags.map(tag => (
-                    <span key={tag} className="text-[10px] border border-white/20 text-white/60 px-2 py-0.5">{tag}</span>
-                  ))}
-                </div>
-              </div>
+              <ServiceDetailCard key={s.category} s={s} delay={i * 80} />
             ))}
           </div>
         </div>
 
         {/* 急なご依頼アピール */}
-        <div className="reveal mb-8 sm:mb-10 bg-[#FFE500] p-5 sm:p-8">
+        <div ref={urgencyRef} className="reveal mb-8 sm:mb-10 bg-[#FFE500] p-5 sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <div className="flex items-center gap-3 shrink-0">
               <span className="text-3xl">⚡</span>
