@@ -19,13 +19,13 @@ export default function ServicesPage() {
   }, [hash])
 
   useEffect(() => {
-    const oemEl = document.getElementById('oem')
-    if (!oemEl) return
+    const odmEl = document.getElementById('odm')
+    if (!odmEl) return
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setShowProcessBtn(true); obs.disconnect() } },
       { threshold: 0.1 }
     )
-    obs.observe(oemEl)
+    obs.observe(odmEl)
     return () => obs.disconnect()
   }, [])
 
@@ -76,7 +76,7 @@ export default function ServicesPage() {
       {/* ご依頼の流れ フローティングボタン */}
       <Link
         to="/process"
-        className={`fixed bottom-24 right-6 z-50 flex items-center gap-2 bg-[#0B1D30] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0CBBD8] transition-all duration-500 ${
+        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#0B1D30] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0CBBD8] transition-all duration-500 ${
           showProcessBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
       >
@@ -532,7 +532,6 @@ function TPLSection() {
         <div ref={urgencyRef} className="reveal mb-8 sm:mb-10 bg-[#FFE500] p-5 sm:p-8">
           <div className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
             <div className="flex items-center gap-3 shrink-0">
-              <span className="text-3xl">⚡</span>
               <p className="font-black text-[#0B1D30] text-lg sm:text-xl leading-tight">
                 急なご依頼も、<br className="sm:hidden" />お任せください。
               </p>
@@ -547,7 +546,7 @@ function TPLSection() {
         </div>
 
         <div className="text-center">
-          <Link to="/contact" className="btn-yellow">3PLについて相談する <ArrowRight size={16} /></Link>
+          <Link to="/contact" className="btn-yellow">物流代行について相談する <ArrowRight size={16} /></Link>
         </div>
       </div>
     </section>
