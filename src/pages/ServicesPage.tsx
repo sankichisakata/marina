@@ -138,10 +138,6 @@ function ServicesHeader() {
           まずはご相談を。<br className="hidden sm:block" />
           最適なプランをご提案します。
         </h1>
-        <p className="text-sm sm:text-base text-white/60 max-w-xl leading-relaxed">
-          OEM・ODM・3PLはお客様が選ぶものではなく、ご相談の内容をもとにこちらからご提案します。
-          「何から始めればいいかわからない」という段階でも、気軽にご連絡ください。
-        </p>
       </div>
     </div>
   )

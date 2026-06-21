@@ -35,11 +35,6 @@ function AboutHeader() {
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mt-2 mb-5">
           日本の縫製現場から<br />世界の生産拠点へ。
         </h1>
-        <p className="text-white/60 max-w-xl leading-relaxed">
-          国内縫製業として創業し、中国、そしてバングラデシュ・ミャンマーへ。
-          創業50年以上、服づくりを続けてきた老舗だからこそ、
-          どんな服でも「きちんと着られるもの」を届けられます。
-        </p>
       </div>
     </div>
   )

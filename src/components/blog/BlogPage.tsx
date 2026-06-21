@@ -27,10 +27,6 @@ export default function BlogPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-8">
             <p className="eyebrow text-[#0CBBD8]">Blog</p>
             <h1 className="page-title text-white mt-2 mb-3">アパレルのあれこれ</h1>
-            <p className="text-white/50 text-sm leading-relaxed">
-              アパレル業界の日々を綴っていく。<br className="hidden sm:block" />
-              製造の現場、OEMの話、ブランドのこと、業界のトレンドまで。
-            </p>
           </div>
         </div>
 

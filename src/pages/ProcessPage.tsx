@@ -160,10 +160,6 @@ export default function ProcessPage() {
           <div className="relative max-w-4xl mx-auto px-4 sm:px-8">
             <p className="eyebrow text-white/60">How It Works</p>
             <h1 className="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">ご依頼の流れ</h1>
-            <p className="text-white/80 leading-relaxed">
-              小ロットと大ロットで、工程・納期・生産地が異なります。<br className="hidden sm:block" />
-              あなたの目的に合わせたフローをご確認ください。
-            </p>
           </div>
         </div>
 

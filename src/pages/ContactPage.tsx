@@ -81,8 +81,8 @@ export default function ContactPage() {
   return (
     <>
       <SEO
-        title="アパレルOEM・ODM・3PL 無料相談・お問い合わせ"
-        description="アパレルOEM・ODM・3PLのご相談は株式会社マリナへ。LINEで気軽に相談いただけます。小ロット50枚〜の製造代行から、ブランド立ち上げ支援・物流代行まで初回相談無料。"
+        title="お問い合わせ"
+        description="アパレルOEM・ODM・3PLのご相談は株式会社マリナへ。LINEで気軽に相談いただけます。小ロット50枚〜の製造代行から、ブランド立ち上げ支援・物流代行まで。相談は無料です。"
         path="/contact"
       />
       <div className="page-wrapper bg-[#F8FCFF]">
@@ -91,8 +91,7 @@ export default function ContactPage() {
         <div className="bg-[#0B1D30] pt-28 pb-16">
           <div className="max-w-4xl mx-auto px-4 sm:px-8">
             <p className="eyebrow text-[#0CBBD8]">Contact</p>
-            <h1 className="page-title text-white mt-2 mb-4">お問い合わせ</h1>
-            <p className="text-white/60">初回相談は無料です。気軽にどうぞ。</p>
+            <h1 className="page-title text-white mt-2">お問い合わせ</h1>
           </div>
         </div>
 
@@ -102,7 +101,7 @@ export default function ContactPage() {
           <div className="bg-white border border-gray-100 p-6 sm:p-8 space-y-6">
             <div className="flex items-center gap-3 bg-[#06C755]/10 border border-[#06C755]/30 px-4 py-3">
               <MessageCircle className="text-[#06C755] shrink-0" size={20} />
-              <p className="text-sm font-black">LINEが最も素早くご対応できます（営業時間内は1時間以内）</p>
+              <p className="text-sm font-black">LINEが素早くご対応できます</p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-8 items-center">
@@ -143,14 +142,17 @@ export default function ContactPage() {
           </div>
 
           {/* メールで問い合わせ */}
-          <div className="bg-white border border-gray-100 p-6 sm:p-8 flex flex-col sm:flex-row items-center gap-4 sm:gap-8">
+          <div className="bg-white border border-gray-100 p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-8">
             <div className="flex-1">
-              <p className="font-black text-[#0B1D30] mb-1">メールで問い合わせ</p>
-              <p className="text-sm text-gray-500">必要事項を入力してお送りください。24時間以内にご返信します。</p>
+              <p className="font-black text-[#0B1D30] mb-1.5">メールで問い合わせ</p>
+              <p className="text-sm text-gray-500 leading-relaxed">
+                必要事項を入力してお送りください。<br />
+                24時間以内にご返信します。
+              </p>
             </div>
             <button
               onClick={openModal}
-              className="flex items-center gap-2 bg-[#0B1D30] text-white text-sm font-black px-6 py-3 hover:bg-[#0CBBD8] transition-colors shrink-0"
+              className="flex items-center gap-2 bg-[#0B1D30] text-white text-sm font-black px-6 py-3.5 hover:bg-[#0CBBD8] transition-colors shrink-0 w-full sm:w-auto justify-center"
             >
               <Mail size={15} />
               メールで問い合わせ
@@ -171,16 +173,16 @@ export default function ContactPage() {
           <div className="relative bg-white w-full max-w-lg mx-0 sm:mx-4 max-h-[95dvh] overflow-y-auto shadow-2xl">
 
             {/* モーダルヘッダー */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 sticky top-0 bg-white z-10">
-              <p className="font-black text-[#0B1D30]">メールで問い合わせ</p>
+            <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 sticky top-0 bg-white z-10">
+              <p className="font-black text-[#0B1D30] text-base">メールで問い合わせ</p>
               {status !== 'loading' && (
-                <button onClick={closeModal} className="text-gray-400 hover:text-gray-700 transition-colors" aria-label="閉じる">
-                  <X size={20} />
+                <button onClick={closeModal} className="text-gray-400 hover:text-gray-700 transition-colors p-1" aria-label="閉じる">
+                  <X size={22} />
                 </button>
               )}
             </div>
 
-            <div className="p-6">
+            <div className="p-5 sm:p-6">
               {status === 'success' ? (
                 /* 送信完了 */
                 <div className="py-8 text-center">
@@ -230,9 +232,9 @@ export default function ContactPage() {
                     className="btn-water w-full disabled:opacity-60 disabled:cursor-not-allowed">
                     {status === 'loading'
                       ? <><span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />送信中...</>
-                      : <><Send size={15} />送信する（無料）</>}
+                      : <><Send size={15} />送信する</>}
                   </button>
-                  <p className="text-xs text-center text-gray-400">送信後、確認メールをお送りします。通常24時間以内にご返信いたします。</p>
+                  <p className="text-xs text-center text-gray-400">送信後、確認メールをお送りします。</p>
                 </form>
               )}
             </div>
@@ -247,17 +249,17 @@ export default function ContactPage() {
 function Field({ label, required, error, children }: { label: string; required?: boolean; error?: string; children: React.ReactNode }) {
   return (
     <div>
-      <label className="block text-xs font-black mb-1.5">
+      <label className="block text-sm font-black mb-1.5">
         {label}{required && <span className="text-[#0CBBD8] ml-1">*</span>}
       </label>
       {children}
-      {error && <p className="mt-1 text-xs text-red-600 flex items-center gap-1"><AlertCircle size={11} />{error}</p>}
+      {error && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1"><AlertCircle size={12} />{error}</p>}
     </div>
   )
 }
 
 const inp = (err: boolean) =>
-  `w-full bg-white border ${err ? 'border-red-400' : 'border-gray-200'} px-4 py-3 text-sm focus:outline-none focus:border-[#0CBBD8] transition-colors`
+  `w-full bg-white border ${err ? 'border-red-400' : 'border-gray-200'} px-4 py-3.5 text-base sm:text-sm focus:outline-none focus:border-[#0CBBD8] transition-colors`
 
 function MessageCircle({ size, className }: { size: number; className?: string }) {
   return (
