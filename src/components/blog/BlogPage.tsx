@@ -23,10 +23,22 @@ export default function BlogPage() {
       <div className="page-wrapper bg-white">
 
         {/* Header */}
-        <div className="bg-[#0B1D30] pt-28 pb-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-8">
-            <p className="eyebrow text-[#0CBBD8]">Blog</p>
-            <h1 className="page-title text-white mt-2 mb-3">アパレルのあれこれ</h1>
+        <div className="relative min-h-[70vh] bg-[#0B1D30] overflow-hidden flex items-center">
+          <img
+            src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=1600&q=80"
+            alt="" aria-hidden
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 overlay-porthole" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-32 pb-16 w-full">
+            <p className="text-[#0CBBD8] text-[11px] font-black tracking-[0.3em] uppercase mb-6">Blog</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black text-white leading-[1] mb-6">
+              アパレルの<br />
+              <span className="text-[#FFE500]">あれこれ</span>
+            </h1>
+            <p className="text-white/60 text-base leading-relaxed max-w-lg">
+              製造の現場・OEM/ODM/3PLの話・ブランドのこと・業界トレンドまで。
+            </p>
           </div>
         </div>
 

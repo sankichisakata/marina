@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Clock } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import SEO from '../components/SEO'
+import { useContact } from '../context/ContactContext'
 
 /* ─── Small lot steps ─── */
 const smallSteps = [
@@ -134,6 +135,7 @@ const faqs = [
 
 export default function ProcessPage() {
   const [mode, setMode] = useState<'small' | 'large'>('small')
+  const { open } = useContact()
 
   return (
     <>
@@ -151,15 +153,27 @@ export default function ProcessPage() {
       <div className="page-wrapper">
 
         {/* Header */}
-        <div className="relative bg-[#0CBBD8] pt-28 pb-16 overflow-hidden">
+        <div className="relative min-h-screen bg-[#0B1D30] overflow-hidden flex items-center">
           <img
-            src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=1200&q=80"
+            src="https://images.unsplash.com/photo-1549989476-69a92fa57c36?w=1600&q=80"
             alt="" aria-hidden
-            className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-multiply"
+            className="absolute inset-0 w-full h-full object-cover opacity-30"
           />
-          <div className="relative max-w-4xl mx-auto px-4 sm:px-8">
-            <p className="eyebrow text-white/60">How It Works</p>
-            <h1 className="text-3xl sm:text-5xl font-black text-white mt-2 mb-4">ご依頼の流れ</h1>
+          <div className="absolute inset-0 overlay-porthole" />
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-32 pb-20 w-full">
+            <p className="text-[#0CBBD8] text-[11px] font-black tracking-[0.3em] uppercase mb-6">How It Works</p>
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-black text-white leading-[1] mb-8">
+              ご依頼の<br />
+              <span className="text-[#FFE500]">流れ</span>
+            </h1>
+            <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+              相談から納品まで、専任担当者がステップごとにサポート。<br />
+              小ロット約2.5ヶ月、大ロット約5ヶ月が目安です。
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <a href="#steps" className="bg-[#0CBBD8] text-white text-xs font-black px-5 py-3 hover:bg-[#0AA8C3] transition-colors">流れを見る</a>
+              <a href="#faq" className="bg-white/10 text-white text-xs font-black px-5 py-3 hover:bg-white/20 transition-colors border border-white/20">よくある質問</a>
+            </div>
           </div>
         </div>
 
@@ -167,7 +181,7 @@ export default function ProcessPage() {
         <ComparisonStrip mode={mode} onSwitch={setMode} />
 
         {/* Steps */}
-        <section className="py-16 bg-white">
+        <section id="steps" className="py-16 bg-white">
           <div className="max-w-3xl mx-auto px-4 sm:px-8">
 
             {/* Tab switcher */}
@@ -216,16 +230,22 @@ export default function ProcessPage() {
         </section>
 
         {/* FAQ */}
-        <FAQ />
+        <div id="faq"><FAQ /></div>
 
         {/* CTA */}
-        <section className="py-16 bg-[#0B1D30] text-white text-center">
-          <div className="max-w-xl mx-auto px-4">
-            <h2 className="text-2xl sm:text-3xl font-black mb-4">まずはLINEで気軽に</h2>
-            <p className="text-white/60 mb-8">どのロットが向いているか、一緒に考えましょう。</p>
-            <Link to="/contact" className="btn-yellow">
-              相談してみる <ArrowRight size={16} />
-            </Link>
+        <section className="relative overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1516762689617-e1cffcef479d?w=1400&q=80"
+            alt="" aria-hidden
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 overlay-porthole-center" />
+          <div className="relative py-24 sm:py-32 text-white text-center max-w-xl mx-auto px-4">
+            <h2 className="text-3xl sm:text-4xl font-black mb-4">まずはLINEで気軽に</h2>
+            <p className="text-white/60 mb-8 leading-relaxed">どのロットが向いているか、一緒に考えましょう。</p>
+            <button onClick={open} className="btn-yellow text-base px-10 py-4">
+              無料で相談する <ArrowRight size={16} />
+            </button>
           </div>
         </section>
       </div>

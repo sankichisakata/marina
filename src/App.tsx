@@ -3,12 +3,16 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import { ChevronUp } from 'lucide-react'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
+import { ContactProvider } from './context/ContactContext'
 import HomePage from './pages/HomePage'
 import ServicesPage from './pages/ServicesPage'
 import AboutPage from './pages/AboutPage'
 import ProcessPage from './pages/ProcessPage'
-import ContactPage from './pages/ContactPage'
 import PrivacyPage from './pages/PrivacyPage'
+import PlanAPage from './pages/PlanAPage'
+import PlanBPage from './pages/PlanBPage'
+import PlanCPage from './pages/PlanCPage'
+import ServiceDesignPage from './pages/ServiceDesignPage'
 import BlogPage from './components/blog/BlogPage'
 import BlogPostPage from './components/blog/BlogPostPage'
 
@@ -42,7 +46,7 @@ function BackToTopButton() {
 
 export default function App() {
   return (
-    <>
+    <ContactProvider>
       <ScrollToTop />
       <Navbar />
       <Routes>
@@ -50,13 +54,16 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/process" element={<ProcessPage />} />
-        <Route path="/contact" element={<ContactPage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:slug" element={<BlogPostPage />} />
         <Route path="/privacy" element={<PrivacyPage />} />
+        <Route path="/plan-a" element={<PlanAPage />} />
+        <Route path="/plan-b" element={<PlanBPage />} />
+        <Route path="/plan-c" element={<PlanCPage />} />
+        <Route path="/service-designs" element={<ServiceDesignPage />} />
       </Routes>
       <Footer />
       <BackToTopButton />
-    </>
+    </ContactProvider>
   )
 }

@@ -3,12 +3,13 @@ import { Link, useLocation } from 'react-router-dom'
 import { ArrowRight, CheckCircle, Package, Paintbrush, Truck, X } from 'lucide-react'
 import { useReveal } from '../hooks/useReveal'
 import SEO from '../components/SEO'
+import { useContact } from '../context/ContactContext'
 
 export default function ServicesPage() {
   const { hash } = useLocation()
   const [showProcessBtn, setShowProcessBtn] = useState(false)
   const [showModal, setShowModal] = useState(false)
-
+  const { open: openContact } = useContact()
   useEffect(() => {
     if (!hash) return
     const id = hash.replace('#', '')
@@ -73,16 +74,26 @@ export default function ServicesPage() {
         <ServicesCTA />
       </div>
 
-      {/* ご依頼の流れ フローティングボタン */}
-      <Link
-        to="/process"
-        className={`fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-[#0B1D30] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0CBBD8] transition-all duration-500 ${
-          showProcessBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-        }`}
-      >
-        <ArrowRight size={13} />
-        ご依頼の流れ
-      </Link>
+      {/* フローティングボタン群 */}
+      <div className={`fixed bottom-6 right-6 z-50 flex flex-col gap-2 transition-all duration-500 ${
+        showProcessBtn ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      }`}>
+        {/* 相談するボタン（スマホのみ表示） */}
+        <button
+          onClick={openContact}
+          className="sm:hidden flex items-center gap-2 bg-[#0CBBD8] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0AA8C3] transition-colors"
+        >
+          <ArrowRight size={13} />
+          相談する
+        </button>
+        <Link
+          to="/process"
+          className="flex items-center gap-2 bg-[#0B1D30] text-white text-xs font-black px-4 py-3 shadow-xl hover:bg-[#0CBBD8] transition-colors"
+        >
+          <ArrowRight size={13} />
+          ご依頼の流れ
+        </Link>
+      </div>
 
       {/* 問い合わせモーダル */}
       {showModal && (
@@ -102,13 +113,12 @@ export default function ServicesPage() {
               ご不明な点やお見積もりのご依頼など、<br />
               お気軽にお問い合わせください。
             </p>
-            <Link
-              to="/contact"
-              onClick={closeModal}
+            <button
+              onClick={() => { closeModal(); openContact() }}
               className="btn-water w-full text-center block mb-3"
             >
               お問い合わせはこちら <ArrowRight size={14} className="inline" />
-            </Link>
+            </button>
             <button
               onClick={closeModal}
               className="block text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-2 w-full"
@@ -125,19 +135,28 @@ export default function ServicesPage() {
 /* ─── Header ─── */
 function ServicesHeader() {
   return (
-    <div className="relative bg-[#0B1D30] overflow-hidden pt-28 pb-20">
+    <div className="relative min-h-screen bg-[#0B1D30] overflow-hidden flex items-center">
       <img
-        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1200&q=80"
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1600&q=80"
         alt="" aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
+        className="absolute inset-0 w-full h-full object-cover opacity-35"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D30] to-[#0B1D30]/50" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
-        <p className="eyebrow text-[#0CBBD8]">Services</p>
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-white leading-tight mt-2 mb-4">
-          まずはご相談を。<br className="hidden sm:block" />
-          最適なプランをご提案します。
+      <div className="absolute inset-0 overlay-porthole" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-32 pb-20 w-full">
+        <p className="text-[#0CBBD8] text-[11px] font-black tracking-[0.3em] uppercase mb-6">Service</p>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-black text-white leading-[1] mb-8">
+          まずはご相談を。<br />
+          <span className="text-[#FFE500]">最適なプランを<br className="sm:hidden" />ご提案します。</span>
         </h1>
+        <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-xl mb-10">
+          OEM・ODM・3PLの3サービスで、<br />
+          ものづくりから物流まで一貫対応します。
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <a href="#oem" className="bg-[#0CBBD8] text-white text-xs font-black px-5 py-3 hover:bg-[#0AA8C3] transition-colors">OEM 製造受託</a>
+          <a href="#odm" className="bg-white/10 text-white text-xs font-black px-5 py-3 hover:bg-white/20 transition-colors border border-white/20">ODM ブランド開発支援</a>
+          <a href="#3pl" className="bg-white/10 text-white text-xs font-black px-5 py-3 hover:bg-white/20 transition-colors border border-white/20">3PL 物流代行</a>
+        </div>
       </div>
     </div>
   )
@@ -187,6 +206,7 @@ const countries = [
 function OEMSection() {
   const ref = useReveal()
   const netRef = useReveal()
+  const { open: openContact } = useContact()
   return (
     <section id="oem" className="relative py-12 sm:py-20 bg-white scroll-mt-28 overflow-hidden">
       <img
@@ -243,7 +263,7 @@ function OEMSection() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn-water w-full text-center">小ロットを相談する <ArrowRight size={15} /></Link>
+              <button onClick={openContact} className="btn-water w-full text-center">小ロットを相談する <ArrowRight size={15} /></button>
             </div>
           </div>
 
@@ -282,7 +302,7 @@ function OEMSection() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn-dark w-full text-center">大ロットを相談する <ArrowRight size={15} /></Link>
+              <button onClick={openContact} className="btn-dark w-full text-center">大ロットを相談する <ArrowRight size={15} /></button>
             </div>
           </div>
         </div>
@@ -332,6 +352,7 @@ const odmSteps = [
 
 function ODMSection() {
   const ref = useReveal()
+  const { open: openContact } = useContact()
   return (
     <section id="odm" className="py-12 sm:py-20 bg-[#F8FCFF] scroll-mt-28">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
@@ -371,7 +392,7 @@ function ODMSection() {
                   </li>
                 ))}
               </ul>
-              <Link to="/contact" className="btn-dark w-full text-center">ODMについて相談する <ArrowRight size={15} /></Link>
+              <button onClick={openContact} className="btn-dark w-full text-center">ODMについて相談する <ArrowRight size={15} /></button>
             </div>
           </div>
         </div>
@@ -606,6 +627,7 @@ function ItemCategories() {
 /* ─── CTA ─── */
 function ServicesCTA() {
   const ref = useReveal()
+  const { open: openContact } = useContact()
   return (
     <section className="py-12 sm:py-16 bg-[#0CBBD8]">
       <div ref={ref} className="reveal max-w-2xl mx-auto px-4 text-center">
@@ -616,7 +638,7 @@ function ServicesCTA() {
           「何から始めればいいかわからない」という段階でも大歓迎。<br className="hidden sm:block" />
           ご相談内容をもとに、最適なプランをご提案します。
         </p>
-        <Link to="/contact" className="btn-yellow">相談してみる <ArrowRight size={16} /></Link>
+        <button onClick={openContact} className="btn-yellow">相談してみる <ArrowRight size={16} /></button>
       </div>
     </section>
   )

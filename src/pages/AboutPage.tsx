@@ -23,18 +23,31 @@ export default function AboutPage() {
 /* ─── Header ─── */
 function AboutHeader() {
   return (
-    <div className="relative bg-[#0B1D30] pt-28 pb-20 overflow-hidden">
+    <div className="relative min-h-screen bg-[#0B1D30] overflow-hidden flex items-center">
       <img
-        src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1200&q=80"
+        src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1600&q=80"
         alt="" aria-hidden
-        className="absolute inset-0 w-full h-full object-cover opacity-20"
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
       />
-      <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D30] to-transparent" />
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-8">
-        <p className="eyebrow text-[#0CBBD8]">About</p>
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mt-2 mb-5">
-          日本の縫製現場から<br />世界の生産拠点へ。
+      <div className="absolute inset-0 overlay-porthole" />
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-8 pt-32 pb-20 w-full">
+        <p className="text-[#0CBBD8] text-[11px] font-black tracking-[0.3em] uppercase mb-6">About Marina</p>
+        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[90px] font-black text-white leading-[1] mb-8">
+          日本の縫製現場から<br />
+          <span className="text-[#FFE500]">世界の生産拠点へ。</span>
         </h1>
+        <p className="text-white/60 text-base sm:text-lg leading-relaxed max-w-xl">
+          創業1972年。50年以上の経験と4ヶ国の生産ネットワークで、<br />
+          あなたのものづくりをトータルサポートします。
+        </p>
+        <div className="mt-16 pt-10 border-t border-white/10 grid grid-cols-3 gap-6 max-w-lg">
+          {[['1972年', '創業'], ['4ヶ国', '生産拠点'], ['50年+', 'の実績']].map(([num, label]) => (
+            <div key={num}>
+              <p className="text-2xl sm:text-3xl font-black text-[#FFE500]">{num}</p>
+              <p className="text-[11px] text-white/40 mt-1">{label}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   )

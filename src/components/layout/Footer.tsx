@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
 import { Instagram, Twitter } from 'lucide-react'
+import { useContact } from '../../context/ContactContext'
 
 const LINE_URL = 'https://lin.ee/XXXXXXXX'
 
 export default function Footer() {
+  const { open } = useContact()
   return (
     <footer className="bg-[#0B1D30] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-8 pt-14 pb-8">
@@ -55,7 +57,11 @@ export default function Footer() {
                   LINE公式アカウント
                 </a>
               </li>
-              <li><Link to="/contact" className="hover:text-white transition-colors">メールで問い合わせ</Link></li>
+              <li>
+                <button onClick={open} className="hover:text-white transition-colors text-left">
+                  メールで問い合わせ
+                </button>
+              </li>
             </ul>
           </div>
         </div>

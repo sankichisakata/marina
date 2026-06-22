@@ -5,35 +5,35 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body {
-    background: #fff;
+    background: #FAFCFF;
     color: #0B1D30;
     font-family: 'Noto Sans JP', 'Inter', sans-serif;
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 { font-weight: 900; letter-spacing: -0.03em; }
+  h1, h2, h3, h4 { font-weight: 900; letter-spacing: -0.02em; }
 }
 
 @layer components {
-  /* ── Buttons ── */
+  /* ── Buttons — pill shape ── */
   .btn-water {
-    @apply inline-flex items-center justify-center gap-2 bg-[#0CBBD8] text-white font-black text-sm tracking-wide px-8 py-4 hover:bg-[#0AA2BC] active:scale-95 transition-all duration-150;
+    @apply inline-flex items-center justify-center gap-2 bg-[#0CBBD8] text-white font-black text-sm px-7 py-3.5 rounded-full hover:bg-[#0AA2BC] active:scale-[0.97] transition-all duration-200 shadow-sm hover:shadow-lg;
   }
   .btn-yellow {
-    @apply inline-flex items-center justify-center gap-2 bg-[#FFE500] text-[#0B1D30] font-black text-sm tracking-wide px-8 py-4 hover:bg-[#E6CE00] active:scale-95 transition-all duration-150;
+    @apply inline-flex items-center justify-center gap-2 bg-[#FFE500] text-[#0B1D30] font-black text-sm px-7 py-3.5 rounded-full hover:bg-[#F0D800] active:scale-[0.97] transition-all duration-200 shadow-sm hover:shadow-lg;
   }
   .btn-dark {
-    @apply inline-flex items-center justify-center gap-2 bg-[#0B1D30] text-white font-black text-sm tracking-wide px-8 py-4 hover:bg-[#1a3352] active:scale-95 transition-all duration-150;
+    @apply inline-flex items-center justify-center gap-2 bg-[#0B1D30] text-white font-black text-sm px-7 py-3.5 rounded-full hover:bg-[#162d4a] active:scale-[0.97] transition-all duration-200 shadow-sm hover:shadow-lg;
   }
   .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-[#0B1D30] text-[#0B1D30] font-black text-sm tracking-wide px-8 py-4 hover:bg-[#0B1D30] hover:text-white active:scale-95 transition-all duration-150;
+    @apply inline-flex items-center justify-center gap-2 border-2 border-[#0B1D30] text-[#0B1D30] font-black text-sm px-7 py-3.5 rounded-full hover:bg-[#0B1D30] hover:text-white active:scale-[0.97] transition-all duration-200;
   }
   .btn-outline-white {
-    @apply inline-flex items-center justify-center gap-2 border-2 border-white text-white font-black text-sm tracking-wide px-8 py-4 hover:bg-white hover:text-[#0B1D30] active:scale-95 transition-all duration-150;
+    @apply inline-flex items-center justify-center gap-2 border-2 border-white text-white font-black text-sm px-7 py-3.5 rounded-full hover:bg-white hover:text-[#0B1D30] active:scale-[0.97] transition-all duration-200;
   }
 
   /* ── Labels ── */
   .eyebrow {
-    @apply inline-block text-[11px] font-black tracking-[0.25em] uppercase text-[#0CBBD8] mb-3;
+    @apply inline-block text-[11px] font-black tracking-[0.2em] uppercase text-[#0CBBD8] bg-[#E0F7FC] px-3.5 py-1.5 rounded-full mb-4;
   }
   .page-title {
     @apply text-4xl md:text-6xl font-black leading-[1.05];
@@ -44,7 +44,7 @@
 
   /* ── Cards ── */
   .card-base {
-    @apply bg-white border border-gray-100 hover:shadow-lg hover:-translate-y-1 transition-all duration-200;
+    @apply bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200;
   }
 
   /* ── Page wrapper ── */
@@ -53,19 +53,19 @@
   }
 }
 
-/* ── Diagonal sections ── */
-.clip-diagonal {
-  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+/* ── Hero porthole overlay ── */
+.overlay-porthole {
+  background: radial-gradient(ellipse 55% 70% at 72% 48%, rgba(11,29,48,0.15) 0%, rgba(11,29,48,0.88) 52%);
 }
-.clip-diagonal-in {
-  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+.overlay-porthole-center {
+  background: radial-gradient(ellipse 60% 55% at 50% 50%, rgba(11,29,48,0.18) 0%, rgba(11,29,48,0.86) 58%);
 }
 
 /* ── Reveal animation ── */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 

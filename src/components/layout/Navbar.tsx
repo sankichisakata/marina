@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import { useContact } from '../../context/ContactContext'
 
 const navLinks = [
   { label: 'サービス', to: '/services' },
@@ -14,6 +15,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
   const navRef = useRef<HTMLElement>(null)
+  const { open } = useContact()
 
   useEffect(() => { setMenuOpen(false) }, [location.pathname])
 
@@ -66,9 +68,9 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn-yellow text-xs py-2.5 px-5">
+          <button onClick={open} className="btn-yellow text-xs py-2.5 px-5">
             無料相談
-          </Link>
+          </button>
         </nav>
 
         {/* Mobile toggle */}
@@ -93,9 +95,9 @@ export default function Navbar() {
               {label}
             </NavLink>
           ))}
-          <Link to="/contact" className="btn-yellow w-full text-center">
+          <button onClick={() => { setMenuOpen(false); open() }} className="btn-yellow w-full text-center">
             無料相談
-          </Link>
+          </button>
         </div>
       )}
     </header>

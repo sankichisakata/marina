@@ -31,8 +31,8 @@ export default function Hero() {
         {!videoReady && (
           <img src={VIDEO_POSTER} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-30" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0B1D30] via-[#0B1D30]/80 to-[#0B1D30]/30" />
-        <div className="absolute bottom-0 inset-x-0 h-48 bg-gradient-to-t from-[#0B1D30]" />
+        <div className="absolute inset-0 overlay-porthole" />
+        <div className="absolute bottom-0 inset-x-0 h-32 bg-gradient-to-t from-[#0B1D30]/60" />
       </div>
 
       {/* Decorative yellow blob */}
